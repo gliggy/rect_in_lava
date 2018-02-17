@@ -55,7 +55,7 @@ Vector.prototype.times = function(factor) {
 var actorChars = {
   "@": Player,
   "o": Coin,
-  "=": Lava, "|": Lava, "v": Lava, //"a": Lava
+  "=": Lava, "|": Lava, "v": Lava, //"^": Lava
   //"H": Hint,
 };
 
@@ -285,6 +285,7 @@ Level.prototype.playerTouched = function(type, actor) {
     this.status = "lost";
     this.finishDelay = 1;
   } else if (type == "coin") {
+    document.getElementById("coin_sound").play();
     this.actors = this.actors.filter(function(other) {
       return other != actor;
     });
