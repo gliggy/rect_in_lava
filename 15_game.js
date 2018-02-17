@@ -55,7 +55,8 @@ Vector.prototype.times = function(factor) {
 var actorChars = {
   "@": Player,
   "o": Coin,
-  "=": Lava, "|": Lava, "v": Lava
+  "=": Lava, "|": Lava, "v": Lava, "a": Lava
+  "H": Hint,
 };
 
 function Player(pos) {
