@@ -282,6 +282,7 @@ Player.prototype.act = function(step, level, keys) {
 
 Level.prototype.playerTouched = function(type, actor) {
   if (type == "lava" && this.status == null) {
+    document.getElementById("in_lava").play();
     this.status = "lost";
     this.finishDelay = 1;
   } else if (type == "coin") {
