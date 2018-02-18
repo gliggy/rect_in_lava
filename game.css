@@ -1,3 +1,6 @@
+body {background:pink;}
+
+
 .background    { background: rgb(52, 166, 251);
                  table-layout: fixed;
                  border-spacing: 0;   }
@@ -10,6 +13,7 @@
 .player { background: rgb(64, 64, 64); }
 
 .game {
+  margin: 0 auto;
   overflow: hidden;
   max-width: 600px;
   max-height: 450px;
