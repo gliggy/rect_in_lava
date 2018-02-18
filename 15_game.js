@@ -363,7 +363,7 @@ function runGame(plans, Display) {
       else if (n < plans.length - 1)
         startLevel(n + 1);
       else
-        play "end_game.wav"
+        // play "end_game.wav"
         console.log("You win!");
     });
   }
