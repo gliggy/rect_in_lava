@@ -364,6 +364,7 @@ function runGame(plans, Display) {
         startLevel(n + 1);
       else
         console.log("You win!");
+        play 
     });
   }
   startLevel(0);
