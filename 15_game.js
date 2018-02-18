@@ -55,7 +55,7 @@ Vector.prototype.times = function(factor) {
 var actorChars = {
   "@": Player,
   "o": Coin,
-  "=": Lava, "|": Lava, "v": Lava, //"^": Lava
+  "=": Lava, "|": Lava, "v": Lava, "^": Lava, "<":Lava, ">":Lava,
   //"H": Hint,
 };
 
@@ -75,6 +75,15 @@ function Lava(pos, ch) {
     this.speed = new Vector(0, 2);
   } else if (ch == "v") {
     this.speed = new Vector(0, 3);
+    this.repeatPos = pos;
+  } else if (ch == "^") {
+    this.speed = new Vector(0, -2);
+    this.repeatPos = pos;
+  } else if (ch == "<") {
+    this.speed = new Vector(-3, 0);
+    this.repeatPos = pos;
+  } else if (ch == ">") {
+    this.speed = new Vector(3, 0);
     this.repeatPos = pos;
   }
 }
