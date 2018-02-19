@@ -57,15 +57,21 @@ Vector.prototype.times = function(factor) {
 
 var actorChars = {
   "@": Player,
+  "a": Player,
   "o": Coin,
   "=": Lava, "|": Lava, "v": Lava, "^": Lava, "<":Lava, ">":Lava,
   //"H": Jump to end,
 };
 
-function Player(pos) {
+function Player(pos, ch) {
   this.pos = pos.plus(new Vector(0, -0.5));
   this.size = new Vector(0.8, 1.5);
   this.speed = new Vector(0, 0);
+  if (ch === "@") {
+    this.keyPart = "arrows";
+  } else {
+    this.keyPart = "letters";
+  }
 }
 Player.prototype.type = "player";
 
@@ -135,7 +141,7 @@ DOMDisplay.prototype.drawActors = function() {
   var wrap = elt("div");
   this.level.actors.forEach(function(actor) {
     var rect = wrap.appendChild(elt("div",
-                                    "actor " + actor.type));
+                                    "actor " + actor.type + " " + (actor.keyPart ? (actor.type + "-" + actor.keyPart) : "")));
     rect.style.width = actor.size.x * scale + "px";
     rect.style.height = actor.size.y * scale + "px";
     rect.style.left = actor.pos.x * scale + "px";
@@ -246,8 +252,13 @@ var playerXSpeed = 7;
 
 Player.prototype.moveX = function(step, level, keys) {
   this.speed.x = 0;
-  if (keys.left) this.speed.x -= playerXSpeed;
-  if (keys.right) this.speed.x += playerXSpeed;
+  if (this.keyPart == "arrows") {
+    if (keys.left) this.speed.x -= playerXSpeed;
+    if (keys.right) this.speed.x += playerXSpeed;
+  } else {
+    if (keys.lettersLeft) this.speed.x -= playerXSpeed;
+    if (keys.lettersRight) this.speed.x += playerXSpeed;
+  }
 
   var motion = new Vector(this.speed.x * step, 0);
   var newPos = this.pos.plus(motion);
@@ -268,7 +279,13 @@ Player.prototype.moveY = function(step, level, keys) {
   var obstacle = level.obstacleAt(newPos, this.size);
   if (obstacle) {
     level.playerTouched(obstacle);
-    if (keys.up && this.speed.y > 0)
+    var up = 0;
+    if (this.keyPart == "arrows") {
+      up = keys.up;
+    } else {
+      up = keys.lettersUp;
+    }
+    if (up && this.speed.y > 0)
       this.speed.y = -jumpSpeed;
     else
       this.speed.y = 0;
@@ -311,14 +328,15 @@ Level.prototype.playerTouched = function(type, actor) {
   }
 };
 
-var arrowCodes = {37: "left", 38: "up", 39: "right"};
+var arrowCodes = {37: "left", 38: "up", 39: "right",
+                  65: "lettersLeft", 87: "lettersUp", 68: "lettersRight"};
 
 function trackKeys(codes) {
   var pressed = Object.create(null);
   function handler(event) {
     //console.log(event.keyCode);
     	//console.log("w".charCodeAt(0));
-    if (event.keyCode == 87) {
+    if (event.keyCode == "G".charCodeAt(0)) {
 	console.log("You won!");
         activeLevel.status = "won";
         activeLevel.finishDelay = 1;
