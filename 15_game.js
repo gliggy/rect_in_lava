@@ -363,7 +363,8 @@ function runGame(plans, Display) {
       else if (n < plans.length - 1)
         startLevel(n + 1);
       else
-        console.log("You win!");
+        // play "end_game.wav" (if possible)
+        console.log("You win!"); /* and person's name (you know it because it was in the link for funny_letters) */
     });
   }
   startLevel(0);
