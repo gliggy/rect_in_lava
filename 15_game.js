@@ -10,7 +10,10 @@ var simpleLevelPlan = [
   "                      "
 ];
 
+var activeLevel = null;
+
 function Level(plan) {
+  activeLevel = this;
   this.width = plan[0].length;
   this.height = plan.length;
   this.grid = [];
@@ -56,7 +59,7 @@ var actorChars = {
   "@": Player,
   "o": Coin,
   "=": Lava, "|": Lava, "v": Lava, "^": Lava, "<":Lava, ">":Lava,
-  //"H": Hint,
+  //"H": Jump to end,
 };
 
 function Player(pos) {
@@ -313,6 +316,13 @@ var arrowCodes = {37: "left", 38: "up", 39: "right"};
 function trackKeys(codes) {
   var pressed = Object.create(null);
   function handler(event) {
+    //console.log(event.keyCode);
+    	//console.log("w".charCodeAt(0));
+    if (event.keyCode == 87) {
+	console.log("You won!");
+        activeLevel.status = "won";
+        activeLevel.finishDelay = 1;
+    }
     if (codes.hasOwnProperty(event.keyCode)) {
       var down = event.type == "keydown";
       pressed[codes[event.keyCode]] = down;
@@ -364,7 +374,7 @@ function runGame(plans, Display) {
         startLevel(n + 1);
       else
         // play "end_game.wav" (if possible)
-        console.log("You win!"); /* and person's name (you know it because it was in the link for funny_letters) */
+        alert("You win!"); /* and person's name (you know it because it was in the link for funny_letters) */
     });
   }
   startLevel(0);
