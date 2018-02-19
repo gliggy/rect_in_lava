@@ -26,3 +26,6 @@ body {background:pink;}
 .won .player {
   box-shadow: -4px -7px 8px white, 4px -7px 8px white;
 }
+.winning {
+  display: none;
+}
