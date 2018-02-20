@@ -11,7 +11,7 @@ var simpleLevelPlan = [
 ];
 
 var activeLevel = null;
-
+0
 function Level(plan) {
   activeLevel = this;
   this.width = plan[0].length;
@@ -300,7 +300,7 @@ Player.prototype.act = function(step, level, keys) {
 
   var otherActor = level.actorAt(this);
   if (otherActor)
-    level.playerTouched(otherActor.type, otherActor);
+    level.playerTouched(otherActor.type, otherActor, this);
 
   // Losing animation
   if (level.status == "lost") {
@@ -309,7 +309,7 @@ Player.prototype.act = function(step, level, keys) {
   }
 };
 
-Level.prototype.playerTouched = function(type, actor) {
+Level.prototype.playerTouched = function(type, actor, me) {
   if (type == "lava" && this.status == null) {
     document.getElementById("in_lava").play();
     this.status = "lost";
@@ -325,6 +325,13 @@ Level.prototype.playerTouched = function(type, actor) {
       this.status = "won";
       this.finishDelay = 1;
     }
+  } else if (type == "player") {
+    actor.speed.y = -6;
+    //if (actor.speed.x * (actor.pos.x - me.pos.x) > 0) {
+      //actor.speed.x = 60;
+      //me.speed.x = -60;
+      //console.log("Boing!");
+    //}
   }
 };
 

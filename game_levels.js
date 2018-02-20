@@ -32,6 +32,22 @@ var GAME_LEVELS = [
   "      x!!!!!!!!!!!!x  ",
   "      xxxxxxxxxxxxxx  ",
   "                      "],
+  ["                   xxxxxxxxxx     ",
+   "     o              x       x     ",
+   "    xxx             x o  o  x     ",
+   "                    x   xxxxx     ",
+   "                    x   x         ",
+   "            xxxxxxxxx   xxx       ",
+   "              x=          x       ",
+   "              xxxxxxx   xxx       ",
+   "     xxx            x   x         ",
+   "          x         x   x         ",
+   "          xxx       x   x         ",
+   "xxxxxxxxxxxxxxx  xxxx   x         ",
+   "x                       x         ",
+   "x@a                     x         ",
+   "xxxxxxxxxxxxxxxxxxxxxxxxxxx         ",
+   "                                    "],
   [" |||||||||                            x!!x             xxx        xxxxxxx                                    xxx  ",
    "                                      x!!x                     xxxx     xxxx                                 x x  ",
    "                                      x!!xxxxxxxxxx           xx           xx                                x x  ",
@@ -144,6 +160,7 @@ var GAME_LEVELS = [
    "        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx   x!!!!!!!!!!!!!!!!!!!!!xxx!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
    "                                                  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
    "                                                                                                               "]
+ 
 ];
 
 if (typeof module != "undefined" && module.exports)
