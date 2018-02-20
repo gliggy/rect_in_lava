@@ -74,7 +74,7 @@ function Player(pos, ch) {
   }
 }
 Player.prototype.type = "player";
-
+/*if player ch === "a" then player "@" === wall, if player ch === "@" then player "a" === wall; wall.prototype.type = "wall"; wall block opposite player, sortof === background if ch === "x" */
 function Lava(pos, ch) {
   this.pos = pos;
   this.size = new Vector(1, 1);
